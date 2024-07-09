@@ -30,7 +30,7 @@ class YoomoneyPayment:
 
 
 # Создаем экземпляр класса для работы с платежами
-payment_service = YoomoneyPayment(config.YOOMONEY_ACCESS_TOKEN, "410015424628716")
+payment_service = YoomoneyPayment(config.YOOMONEY_ACCESS_TOKEN, config.YOOMONEY_CLIENT_ID)
 
 
 # Функция для генерации ссылки на оплату

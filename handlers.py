@@ -4,9 +4,10 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
 
+import yookassa_payment
 from config import sheet, bot, url, image
 from keyboard import get_main_keyboard
-from payment import get_payment_url
+from yoomoney_payment import get_payment_url
 
 router = Router()
 
@@ -26,10 +27,17 @@ async def callback_query(query: CallbackQuery):
         await bot.send_message(query.from_user.id, f"Ленина, 1:\n{url}")
     # Обработка нажатия на кнопку 2
     elif query.data == "pay":
+        # Реализация оплаты через Yoomoney
         amount = 2
         description = "Оплата 2 руб"
-        payment_url, label = get_payment_url(amount, description)
-        await bot.send_message(query.from_user.id, f"Ссылка на оплату 2 руб:\n{payment_url}")
+        yoomoney_url, label = get_payment_url(amount, description)
+        await bot.send_message(query.from_user.id, f"Ссылка на оплату 2 руб (YooMoney):\n{yoomoney_url}")
+
+        # Реализация оплаты через Yookassa
+        amount = 2
+        yookassa_url = yookassa_payment.get_yookassa_payment_url(amount)
+        await bot.send_message(query.from_user.id, f"Ссылка на оплату 2 руб (YooKassa):\n{yookassa_url}")
+
     # Обработка нажатия на кнопку 3
     elif query.data == "get_image":
         await bot.send_photo(query.from_user.id, image, caption="Картинка")
