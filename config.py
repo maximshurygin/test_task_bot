@@ -18,6 +18,10 @@ GOOGLE_SHEET_CREDENTIALS_PATH = os.getenv("GOOGLE_SHEET_CREDENTIALS_PATH")
 YOOMONEY_CLIENT_ID = os.getenv("YOOMONEY_CLIENT_ID")
 YOOMONEY_ACCESS_TOKEN = os.getenv("YOOMONEY_ACCESS_TOKEN")
 
+YOOKASSA_API_KEY = os.getenv("YOOKASSA_API_KEY")
+YOOKASSA_SHOP_ID = os.getenv("YOOKASSA_SHOP_ID")
+RETURN_URL_FOR_YOOKASSA_PAYMENT = os.getenv("REDIRECT_URL_FOR_YOOKASSA_PAYMENT")
+
 # Настройки для доступа к Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_SHEET_CREDENTIALS_PATH, scope)
